@@ -13,6 +13,18 @@
             android:theme="@style/Theme.MotelAnimal"
             tools:targetApi="31">
         <activity
+                android:name=".CheckOutActivity"
+                android:exported="false" />
+        <activity
+                android:name=".CheckInActivity"
+                android:exported="false" />
+        <activity
+                android:name=".LojaActivity"
+                android:exported="false" />
+        <activity
+                android:name=".ConsultasActivity"
+                android:exported="false" />
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
