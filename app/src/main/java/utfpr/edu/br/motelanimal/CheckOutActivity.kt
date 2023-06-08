@@ -13,7 +13,6 @@ class CheckOutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
-        binding.toolBar.title = getString(R.string.check_out)
         binding.toolBar.setNavigationOnClickListener { finish() }
     }
 

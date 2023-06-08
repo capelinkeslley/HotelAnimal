@@ -13,7 +13,6 @@ class TutoresListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
-        binding.toolBar.title = getString(R.string.tutores)
         binding.toolBar.setNavigationOnClickListener { finish() }
         binding.toolBarAdd.setNavigationOnClickListener { addNew() }
     }
