@@ -12,28 +12,21 @@
             android:id="@+id/btnCheckIn"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Check-in" />
+            android:text="@string/check_in" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckOut"
             android:layout_marginTop="25dp"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Check-out" />
-
-    <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLoja"
-            android:layout_marginTop="25dp"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Loja" />
+            android:text="@string/check_out" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConsultas"
             android:layout_marginTop="25dp"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Consultas" />
+            android:text="@string/consultas" />
 
 
 </com.google.android.material.circularreveal.CircularRevealLinearLayout>

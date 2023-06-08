@@ -1,10 +1,9 @@
 package utfpr.edu.br.motelanimal
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.databinding.ActivityCheckOutBinding
-import utfpr.edu.br.motelanimal.databinding.ActivityConsultasBinding
 
 class CheckOutActivity : AppCompatActivity() {
 
@@ -15,26 +14,26 @@ class CheckOutActivity : AppCompatActivity() {
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
 
-        binding.toolBar.title = "Check-Out";
+        binding.toolBar.title = getString(R.string.check_out)
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(this.localClassName, "onPause");
+        Log.i(this.localClassName, "onPause")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i(this.localClassName, "onStart");
+        Log.i(this.localClassName, "onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(this.localClassName, "onStop");
+        Log.i(this.localClassName, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(this.localClassName, "onDestroy");
+        Log.i(this.localClassName, "onDestroy")
     }
 }

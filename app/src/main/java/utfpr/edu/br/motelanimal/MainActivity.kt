@@ -2,11 +2,8 @@ package utfpr.edu.br.motelanimal
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import utfpr.edu.br.motelanimal.dao.DataBaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,48 +17,42 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnCheckIn.setOnClickListener { onClickBtnCheckIn() }
         binding.btnCheckOut.setOnClickListener { onClickBtnCheckOut() }
-        binding.btnLoja.setOnClickListener { onClickBtnCheckLoja() }
         binding.btnConsultas.setOnClickListener { onClickBtnCheckConsultas() }
     }
 
-    fun onClickBtnCheckIn() {
+    private fun onClickBtnCheckIn() {
         Log.i(this.localClassName, "onClickBtnCheckIn")
         startActivity(Intent(this, CheckInActivity::class.java))
     }
 
-    fun onClickBtnCheckOut() {
+    private fun onClickBtnCheckOut() {
         Log.i(this.localClassName, "onClickBtnCheckOut")
         startActivity(Intent(this, CheckOutActivity::class.java))
     }
 
-    fun onClickBtnCheckLoja() {
-        Log.i(this.localClassName, "onClickBtnCheckLoja")
-        startActivity(Intent(this, LojaActivity::class.java))
-    }
-
-    fun onClickBtnCheckConsultas() {
+    private fun onClickBtnCheckConsultas() {
         Log.i(this.localClassName, "onClickBtnCheckConsultas")
         startActivity(Intent(this, ConsultasActivity::class.java))
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(this.localClassName, "onPause");
+        Log.i(this.localClassName, "onPause")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i(this.localClassName, "onStart");
+        Log.i(this.localClassName, "onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(this.localClassName, "onStop");
+        Log.i(this.localClassName, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(this.localClassName, "onDestroy");
+        Log.i(this.localClassName, "onDestroy")
     }
 
 }
