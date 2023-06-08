@@ -14,6 +14,8 @@ class ConsultasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate CONSULTAS")
         setContentView(binding.root)
+
+        binding.toolBar.title = "Consultas";
     }
 
     override fun onPause() {

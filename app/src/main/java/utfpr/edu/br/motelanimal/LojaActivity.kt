@@ -13,6 +13,8 @@ class LojaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
+
+        binding.toolBar.title = "Loja";
     }
 
     override fun onPause() {

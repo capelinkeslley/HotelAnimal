@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="#E6CFFF"
+        android:background="@color/system_background"
         tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckIn"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Check-in"/>
+            android:text="Check-in" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckOut"
@@ -21,7 +20,6 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="Check-out" />
-
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLoja"
@@ -38,5 +36,4 @@
             android:text="Consultas" />
 
 
-
-</LinearLayout>
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>

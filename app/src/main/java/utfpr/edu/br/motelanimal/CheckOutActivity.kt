@@ -14,6 +14,8 @@ class CheckOutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
+
+        binding.toolBar.title = "Check-Out";
     }
 
     override fun onPause() {

@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="system_background">#E6CFFF</color>
+    <color name="background_AppBarLayout">#FFA756FF</color>
+    <color name="color_AppBarLayout">#FFA756FF</color>
 </resources>
