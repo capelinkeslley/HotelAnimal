@@ -3,18 +3,23 @@ package utfpr.edu.br.motelanimal
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import utfpr.edu.br.motelanimal.databinding.ActivityCheckOutBinding
+import utfpr.edu.br.motelanimal.databinding.ActivityRelatoriosListBinding
 
-class CheckOutActivity : AppCompatActivity() {
+class RelatoriosListActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityCheckOutBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityRelatoriosListBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
-        binding.toolBar.title = getString(R.string.check_out)
+        binding.toolBar.title = getString(R.string.relatorios)
         binding.toolBar.setNavigationOnClickListener { finish() }
+        binding.toolBarAdd.setNavigationOnClickListener { addNew() }
+    }
+
+    private fun addNew() {
+        Log.i(this.localClassName, "addNew")
     }
 
     override fun onPause() {

@@ -1,8 +1,9 @@
 package utfpr.edu.br.motelanimal
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.databinding.ActivityConsultasBinding
 
 class ConsultasActivity : AppCompatActivity() {
@@ -14,6 +15,26 @@ class ConsultasActivity : AppCompatActivity() {
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
         binding.toolBar.title = getString(R.string.consultas)
+        binding.toolBar.setNavigationOnClickListener { finish() }
+
+        binding.btnTutores.setOnClickListener { onClickBtnTutores() }
+        binding.btnPets.setOnClickListener { onClickBtnPets() }
+        binding.btnRelatorios.setOnClickListener { onClickBtnRelatorios() }
+    }
+
+    private fun onClickBtnTutores() {
+        Log.i(this.localClassName, "onClickBtnTutores")
+        startActivity(Intent(this, TutoresListActivity::class.java))
+    }
+
+    private fun onClickBtnPets() {
+        Log.i(this.localClassName, "onClickBtnPets")
+        startActivity(Intent(this, PetsListActivity::class.java))
+    }
+
+    private fun onClickBtnRelatorios() {
+        Log.i(this.localClassName, "onClickBtnRelatorios")
+        startActivity(Intent(this, RelatoriosListActivity::class.java))
     }
 
     override fun onPause() {

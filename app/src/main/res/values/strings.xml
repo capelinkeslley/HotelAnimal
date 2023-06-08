@@ -4,4 +4,7 @@
     <string name="check_in">Check-In</string>
     <string name="check_out">Check-Out</string>
     <string name="consultas">Consultas</string>
+    <string name="tutores">Tutores</string>
+    <string name="pets">Pets</string>
+    <string name="relatorios">Relatórios</string>
 </resources>

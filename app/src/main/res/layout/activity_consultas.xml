@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:background="@color/system_background"
         tools:context=".ConsultasActivity">
 
@@ -23,5 +24,37 @@
                 app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+            android:layout_marginTop="-56dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTutores"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                app:icon="@drawable/baseline_people_24"
+                android:text="@string/tutores" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPets"
+                android:layout_marginTop="25dp"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                app:icon="@drawable/baseline_pets_24"
+                android:text="@string/pets" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRelatorios"
+                android:layout_marginTop="25dp"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                app:icon="@drawable/baseline_library_books_24"
+                android:text="@string/relatorios" />
+
+    </LinearLayout>
 
 </com.google.android.material.circularreveal.CircularRevealLinearLayout>
