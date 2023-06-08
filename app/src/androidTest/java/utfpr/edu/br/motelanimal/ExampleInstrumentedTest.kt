@@ -1,4 +1,4 @@
-package utfpr.edu.br.keslley.hotelanimal
+package utfpr.edu.br.motelanimal
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("utfpr.edu.br.keslley.hotelanimal", appContext.packageName)
+        assertEquals("utfpr.edu.br.motelanimal", appContext.packageName)
     }
 }

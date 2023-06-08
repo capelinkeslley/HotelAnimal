@@ -1,4 +1,4 @@
-package utfpr.edu.br.keslley.hotelanimal
+package utfpr.edu.br.motelanimal
 
 import org.junit.Test
 
