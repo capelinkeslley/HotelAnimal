@@ -73,7 +73,10 @@ class TutorActivity : AppCompatActivity() {
 
     private fun onClickExcluir() {
         Log.i(this.localClassName, "onClickExcluir")
-        MaterialAlertDialogBuilder(this, com.google.android.material.R.style.MaterialAlertDialog_Material3)
+        MaterialAlertDialogBuilder(
+            this,
+            com.google.android.material.R.style.MaterialAlertDialog_Material3
+        )
             .setMessage("Você tem certeza que deseja excluir?\nA operação não pode ser revertida!")
             .setPositiveButton("Confirmar") { dialog, _ ->
                 dialog.dismiss()
@@ -148,7 +151,8 @@ class TutorActivity : AppCompatActivity() {
         if (notIsValid) {
             binding.nomeCompletoLayout.error = "Campo Inválido"
         } else {
-            tutor.nomeCompleto = tutor.nomeCompleto.substring(0, 1).uppercase() + tutor.nomeCompleto.substring(1)
+            tutor.nomeCompleto =
+                tutor.nomeCompleto.substring(0, 1).uppercase() + tutor.nomeCompleto.substring(1)
         }
         Log.i(
             this.localClassName,
@@ -256,7 +260,8 @@ class TutorActivity : AppCompatActivity() {
                         binding.cpfLayout.error = "CPF Já cadastrado"
                         binding.cpf.requestFocus()
                     } else {
-                        Toast.makeText(this, "Tutor cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Tutor cadastrado com sucesso", Toast.LENGTH_SHORT)
+                            .show()
                         super.finish()
                     }
                 } else {
@@ -265,7 +270,10 @@ class TutorActivity : AppCompatActivity() {
                     super.finish()
                 }
             } else {
-                 MaterialAlertDialogBuilder(this, com.google.android.material.R.style.MaterialAlertDialog_Material3)
+                MaterialAlertDialogBuilder(
+                    this,
+                    com.google.android.material.R.style.MaterialAlertDialog_Material3
+                )
                     .setMessage("Você tem certeza que deseja sair?\nTodos os dados serão perdidos!")
                     .setPositiveButton("Confirmar") { dialog, _ ->
                         dialog.dismiss()

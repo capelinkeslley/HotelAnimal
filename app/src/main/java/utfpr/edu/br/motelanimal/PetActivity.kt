@@ -94,9 +94,9 @@ class PetActivity : AppCompatActivity() {
             tutoresList.map { it.nomeCompleto })
 
         if (pet.tutor != 0) {
-            val tutorPet = tutoresList.filter { it._id == pet._id }.firstOrNull()
-            val index = if (tutorPet != null) tutoresList.indexOf(tutorPet) else -1
-            binding.tutor.setSelection(index + 1)
+            val tutorPet = tutoresList.filter { it._id == pet.tutor }.firstOrNull()
+            val index = if (tutorPet != null) tutoresList.indexOf(tutorPet) else 0
+            binding.tutor.setSelection(index)
         }
 
         binding.tutor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
