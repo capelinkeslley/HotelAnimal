@@ -5,16 +5,21 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 
-internal abstract class DataBaseHandler protected constructor(
+abstract class DataBaseHandler protected constructor(
     context: Context?,
     val tablename: String
 ) :
     SQLiteOpenHelper(context, "motelanimal", null, 1) {
 
     init {
+        afterCreate()
+    }
+
+    private fun afterCreate() {
         onCreate(this.writableDatabase)
     }
 
@@ -23,14 +28,17 @@ internal abstract class DataBaseHandler protected constructor(
     }
 
     protected fun save(values: ContentValues?): Long {
+        Log.i(this.tablename, "save")
         return this.writableDatabase.insert(tablename, null, values)
     }
 
     protected fun update(registro: ContentValues?, id: Int): Int {
+        Log.i(this.tablename, "update > $id")
         return this.writableDatabase.update(tablename, registro, "_id = ?", arrayOf(id.toString()))
     }
 
     fun delete(id: Int): Int {
+        Log.i(this.tablename, "delete > $id")
         return this.writableDatabase.delete(tablename, "_id = ?", arrayOf(id.toString()))
     }
 
@@ -48,23 +56,16 @@ internal abstract class DataBaseHandler protected constructor(
     }
 
     fun findList(orderBy: String? = null): Cursor? {
-        try {
-            val registros =
-                this.writableDatabase.query(tablename, null, null, null, null, null, orderBy)
-            if (ObjectUtils.isNotEmpty(registros) && registros.moveToNext()) {
-                registros.moveToPrevious()
-                return registros
-            }
-        } catch (ignored: Exception) {
+        val registros =
+            this.writableDatabase.query(tablename, null, null, null, null, null, orderBy)
+        if (ObjectUtils.isNotEmpty(registros) && registros.moveToNext()) {
+            registros.moveToPrevious()
+            return registros
         }
         return null
     }
 
     fun getColumn(cursor: Cursor, columnName: String?): String? {
-        return try {
-            cursor.getString(cursor.getColumnIndexOrThrow(columnName))
-        } catch (e: Exception) {
-            null
-        }
+        return cursor.getString(cursor.getColumnIndexOrThrow(columnName))
     }
 }

@@ -7,4 +7,17 @@
     <string name="tutores">Tutores</string>
     <string name="pets">Pets</string>
     <string name="relatorios">Relatórios</string>
+    <string name="novo">Novo</string>
+    <string name="editar">Editar</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="cpf">CPF</string>
+    <string name="e_mail">E-mail</string>
+    <string name="telefone">Telefone</string>
+    <string name="cep">CEP</string>
+    <string name="bairro">Bairro</string>
+    <string name="endereco">Endereço</string>
+    <string name="cidade">Cidade</string>
+    <string name="complemento">Complemento</string>
+    <string name="observacoes">Observações</string>
+    <string name="nenhum_registro_encontrado">Nenhum Registro Encontrado</string>
 </resources>

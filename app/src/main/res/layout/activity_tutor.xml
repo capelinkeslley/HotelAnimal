@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/system_background"
+        tools:context=".TutorActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_heigth"
+            android:background="@color/background_AppBarLayout">
+
+        <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:navigationIcon="@drawable/baseline_arrow_back_24"
+                app:navigationIconTint="@color/white"
+                app:titleTextColor="@color/white"
+                app:title="@string/novo">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolBarExcluir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:navigationIcon="@drawable/baseline_delete_forever_24"
+                    app:navigationIconTint="@color/white"
+                    android:layout_gravity="end">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/toolBarSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:navigationIcon="@drawable/baseline_save_24"
+                        app:navigationIconTint="@color/white" />
+            </com.google.android.material.appbar.MaterialToolbar>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:counterMaxLength="256"
+                    android:id="@+id/nomeCompletoLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nomeCompleto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="textCapWords|textAutoComplete"
+                        android:maxLength="256"
+                        android:maxLines="1"
+                        android:hint="@string/nome_completo" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:counterMaxLength="256"
+                    android:id="@+id/cpfLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:hint="@string/cpf" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:counterMaxLength="256"
+                    android:id="@+id/emailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="256"
+                        android:maxLines="1"
+                        android:hint="@string/e_mail" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:counterMaxLength="256"
+                    android:id="@+id/telefonePrincipalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/telefonePrincipal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:hint="@string/telefone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_margin="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        app:counterMaxLength="256"
+                        android:id="@+id/cepLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        style="@style/InputOutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cep"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/input_text_color"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:hint="@string/cep" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        app:counterMaxLength="256"
+                        android:id="@+id/bairroLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        style="@style/InputOutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/bairro"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/input_text_color"
+                            android:inputType="textAutoComplete"
+                            android:maxLength="256"
+                            android:maxLines="1"
+                            android:hint="@string/bairro" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:counterMaxLength="256"
+                    android:id="@+id/enderecoLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/endereco"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:hint="@string/endereco" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        app:counterMaxLength="256"
+                        android:id="@+id/cidadeLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        style="@style/InputOutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cidade"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/input_text_color"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:hint="@string/cidade" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        app:counterMaxLength="256"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        style="@style/InputOutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/complemento"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/input_text_color"
+                            android:inputType="textAutoComplete"
+                            android:maxLength="256"
+                            android:maxLines="1"
+                            android:hint="@string/complemento" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputOutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/observacoes"
+                        android:hint="@string/observacoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/input_text_color"
+                        android:inputType="textAutoComplete"
+                        android:maxLength="256"
+                        android:maxLines="6" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>

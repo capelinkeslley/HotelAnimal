@@ -2,7 +2,32 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FF0000</color>
     <color name="system_background">#E6CFFF</color>
     <color name="background_AppBarLayout">#FFA756FF</color>
     <color name="color_AppBarLayout">#FFA756FF</color>
+
+
+    <color name="input_text_color">#B774FF</color>
+    <color name="input_background">#F7F1FF</color>
+    <color name="input_border_color">#FFA756FF</color>
+    <color name="input_focus_color">#78AEFF</color>
+    <color name="input_text_focus_color">#448FFF</color>
+    <color name="input_hint_focus_color">#BF84FF</color>
+
+    <style name="InputOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginLeft">@dimen/default_margin</item>
+        <item name="android:layout_marginRight">@dimen/default_margin</item>
+
+        <item name="boxBackgroundColor">@color/input_background</item>
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="errorIconDrawable">@drawable/baseline_pets_24</item>
+
+        <item name="boxStrokeColor">@color/input_focus_color</item>
+        <item name="hintTextColor">@color/input_text_focus_color</item>
+
+        <item name="android:textColorHint">@color/input_hint_focus_color</item>
+
+    </style>
 </resources>
