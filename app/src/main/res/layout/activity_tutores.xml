@@ -39,15 +39,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/semRegistros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:text="@string/nenhum_registro_encontrado" />
-
-
         <ListView
                 android:id="@+id/listaTutores"
                 android:layout_width="match_parent"

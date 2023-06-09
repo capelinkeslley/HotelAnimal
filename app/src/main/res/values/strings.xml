@@ -20,4 +20,13 @@
     <string name="complemento">Complemento</string>
     <string name="observacoes">Observações</string>
     <string name="nenhum_registro_encontrado">Nenhum Registro Encontrado</string>
+    <string name="responsavel">Responsável</string>
+    <string name="especie">Espécie</string>
+    <string name="nome">Nome</string>
+    <string name="carregar">Carregar</string>
+    <string name="url_da_imagem">URL da Imagem</string>
+    <string name="idade">Idade</string>
+    <string name="raca">Raça</string>
+    <string name="dieta">Dieta</string>
+    <string name="comportamento">Comportamento</string>
 </resources>

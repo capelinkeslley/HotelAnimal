@@ -5,7 +5,6 @@ import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.SimpleCursorAdapter
 import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.dao.TutorDatabaseHandler
@@ -57,10 +56,6 @@ class TutoresListActivity : AppCompatActivity() {
             while (cursor!!.moveToNext()) {
                 tutores.add(Tutor(tutorDatabaseHandler, cursor))
             }
-        }
-
-        if (ObjectUtils.isNotEmpty(tutores)) {
-            binding.semRegistros.visibility = View.GONE
         }
     }
 

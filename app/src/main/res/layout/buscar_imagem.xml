@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.CircularRevealLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/baseline_image_search_24"
+            tools:ignore="ContentDescription" />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/urlLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="@dimen/toolbar_heigth"
+            style="@style/InputOutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/url_da_imagem" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:id="@+id/btnCarregar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="@dimen/toolbar_heigth"
+            app:icon="@drawable/baseline_search_24"
+            android:text="@string/carregar" />
+
+
+</com.google.android.material.circularreveal.CircularRevealLinearLayout>
