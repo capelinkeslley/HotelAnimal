@@ -15,6 +15,7 @@ class CheckInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
         setContentView(binding.root)
+        binding.toolBar.setNavigationOnClickListener { finish() }
 
         val pets = arrayOf("pet 1", "pet 2", "pet 3", "pet 4")
         val responsaveis = arrayOf("responsável 1", "responsável 2", "responsável 3", "responsável 4")
