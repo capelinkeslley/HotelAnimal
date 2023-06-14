@@ -10,7 +10,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/toolbar_heigth"
         android:background="@color/background_AppBarLayout">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -20,56 +20,56 @@
             app:navigationIcon="@drawable/baseline_arrow_back_24"
             app:navigationIconTint="@color/white"
             app:titleTextColor="@color/white"
-            app:title="@string/check_in"/>
+            app:title="@string/novo">
 
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBarSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/baseline_save_24"
+                app:navigationIconTint="@color/white"
+                android:layout_gravity="end" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Pets"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        app:prefixText="Pet"
+        style="@style/InputOutlinedBox">
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Spinner
             android:id="@+id/pet"
-            android:inputType="none">
-
-        </AutoCompleteTextView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Responsável pelo Check-in"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        app:prefixText="Responsavel"
+        style="@style/InputOutlinedBox">
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Spinner
             android:id="@+id/responsavel"
-            android:inputType="none">
-
-        </AutoCompleteTextView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Quarto"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        app:prefixText="Quarto"
+        style="@style/InputOutlinedBox">
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Spinner
             android:id="@+id/quarto"
-            android:inputType="none">
-
-        </AutoCompleteTextView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RelativeLayout
