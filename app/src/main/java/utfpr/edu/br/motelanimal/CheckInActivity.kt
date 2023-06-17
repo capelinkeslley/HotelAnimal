@@ -13,11 +13,9 @@ import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
 import utfpr.edu.br.motelanimal.dao.QuartoDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityCheckInBinding
 import utfpr.edu.br.motelanimal.entidades.ControleQuarto
-import utfpr.edu.br.motelanimal.entidades.Especie
 import utfpr.edu.br.motelanimal.entidades.Funcionario
 import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.Quarto
-import utfpr.edu.br.motelanimal.entidades.getEspecieById
 import utfpr.edu.br.motelanimal.entidades.getFuncionarioById
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
@@ -30,8 +28,6 @@ class CheckInActivity : AppCompatActivity() {
     private val petDatabaseHandler by lazy { PetsDatabaseHandler(this) }
     private val quartoDatabaseHandler by lazy { QuartoDatabaseHandler(this) }
     private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
-    private var pet: Pet = Pet()
-    private var quarto: Quarto = Quarto()
     private var controleQuarto: ControleQuarto = ControleQuarto()
 
 
@@ -42,12 +38,15 @@ class CheckInActivity : AppCompatActivity() {
         binding.toolBar.setNavigationOnClickListener { finish() }
 
         val pets = arrayOf("pet 1", "pet 2", "pet 3", "pet 4")
-        val responsaveis = arrayOf("responsável 1", "responsável 2", "responsável 3", "responsável 4")
+        val responsaveis =
+            arrayOf("responsável 1", "responsável 2", "responsável 3", "responsável 4")
         val quarto = arrayOf("quarto 1", "quarto 2", "quarto 3", "quarto 4")
 
         val adapterPets = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, pets)
-        val adapterResponsavel  = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responsaveis)
-        val adapterQuarto = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, quarto)
+        val adapterResponsavel =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responsaveis)
+        val adapterQuarto =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, quarto)
 
         adapterPets.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
         adapterResponsavel.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
@@ -60,8 +59,6 @@ class CheckInActivity : AppCompatActivity() {
         binding.toolBarSave.setNavigationOnClickListener { onClickSave() }
 
         binding.btnCancel.setOnClickListener { onClickBtnCancel() }
-
-        val cursor = controleQuartoHandler.findList()
 
     }
 
@@ -166,25 +163,25 @@ class CheckInActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.i(this.localClassName, "onPause");
+        Log.i(this.localClassName, "onPause")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i(this.localClassName, "onStart");
+        Log.i(this.localClassName, "onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(this.localClassName, "onStop");
+        Log.i(this.localClassName, "onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i(this.localClassName, "onDestroy");
+        Log.i(this.localClassName, "onDestroy")
     }
 
-    private fun onClickBtnCancel(){
+    private fun onClickBtnCancel() {
         Log.i(this.localClassName, "onClickBtnCancel")
         startActivity(Intent(this, MainActivity::class.java))
     }
