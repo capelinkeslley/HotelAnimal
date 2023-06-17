@@ -17,6 +17,8 @@ class Tutor() {
     var complemento: String = ""
     var observacoes: String = ""
 
+    var checked: Boolean = false
+
     constructor(
         database: DataBaseHandler, cursor: Cursor
     ) : this() {

@@ -13,7 +13,7 @@ import utfpr.edu.br.motelanimal.utils.tryLoadImage
 class ListaAdapter(
     private val context: Context,
     pets: List<Pet>,
-    private val listener: OnItemClickListener
+    private val listener: OnListaAdapterClickListener
 ) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
 
     private val pets = pets.toMutableList()
@@ -59,8 +59,4 @@ class ListaAdapter(
         notifyDataSetChanged()
     }
 
-}
-
-interface OnItemClickListener {
-    fun onItemClick(pet: Pet)
 }

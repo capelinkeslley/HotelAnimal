@@ -1,14 +1,19 @@
 package utfpr.edu.br.motelanimal
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
+import utfpr.edu.br.motelanimal.dao.RelTutorPetDatabaseHandler
 import utfpr.edu.br.motelanimal.dao.TutorDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityPetBinding
 import utfpr.edu.br.motelanimal.databinding.BuscarImagemBinding
@@ -23,12 +28,14 @@ class PetActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityPetBinding.inflate(layoutInflater) }
     private val tutorDatabaseHandler by lazy { TutorDatabaseHandler(this) }
+    private val relTutorPetDatabaseHandler by lazy { RelTutorPetDatabaseHandler(this) }
     private val petsDatabaseHandler by lazy { PetsDatabaseHandler(this) }
     private val tutoresList = mutableListOf<Tutor>()
 
     private var pet: Pet = Pet()
     private var isFormDirt: Boolean = false
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet)
@@ -41,6 +48,9 @@ class PetActivity : AppCompatActivity() {
             binding.toolBar.title = getString(R.string.editar)
             buscaDadosPet()
 
+            relTutorPetDatabaseHandler.findByPet(pet._id).forEach { pet.cotutor.add(it.tutor) }
+            setCoTutoresButtonText()
+
             binding.toolBarExcluir.setNavigationOnClickListener { onClickExcluir() }
         } else {
             binding.toolBarExcluir.visibility = View.GONE
@@ -49,11 +59,24 @@ class PetActivity : AppCompatActivity() {
         binding.toolBar.setNavigationOnClickListener { onClickReturn() }
         binding.toolBarSave.setNavigationOnClickListener { onClickSave() }
         binding.foto.setOnClickListener { onClickImage() }
+        binding.btnCotutores.setOnClickListener { onClickSelectCoTutores() }
 
         setEspecies()
         setTutores()
 
         bindValidationOnInputs()
+    }
+
+    private fun onClickSelectCoTutores() {
+        Log.i(this.localClassName, "onClickSelectCoTutores")
+        val intentNewTutor = Intent(this, SelectCoTutores::class.java)
+        intentNewTutor.putExtra("cotutores", pet.cotutor.joinToString { it.toString() }.replace(" ", ""))
+        activityResultLauncher.launch(intentNewTutor)
+    }
+
+    private fun setCoTutoresButtonText() {
+        val text = "[${pet.cotutor.size}] ${getString(R.string.cotutores)}"
+        binding.btnCotutores.text = text
     }
 
     private fun setEspecies() {
@@ -311,6 +334,22 @@ class PetActivity : AppCompatActivity() {
         } else {
             super.finish()
         }
+    }
+
+    val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { resultIntent ->
+            Log.i(this.localClassName, "activityResultLauncher")
+            if (resultIntent.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = resultIntent.data
+                val result = data?.getStringExtra("result")?.split(",")?.map { it.toInt() }
+                pet.cotutor = result?.toMutableList() ?: mutableListOf()
+                setCoTutoresButtonText()
+            }
+        }
+
+    override fun onResume() {
+        Log.i(this.localClassName, "onResume")
+        super.onResume()
     }
 
     override fun onPause() {

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.adapter.ListaAdapter
-import utfpr.edu.br.motelanimal.adapter.OnItemClickListener
+import utfpr.edu.br.motelanimal.adapter.OnListaAdapterClickListener
 import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityPetsListBinding
 import utfpr.edu.br.motelanimal.entidades.Pet
@@ -16,7 +16,7 @@ class PetsListActivity : AppCompatActivity(R.layout.activity_pets_list) {
     private val binding by lazy { ActivityPetsListBinding.inflate(layoutInflater) }
     private val petsDatabaseHandler by lazy { PetsDatabaseHandler(this) }
     private val listaAdapter by lazy {
-        ListaAdapter(this, findAllPets(), object : OnItemClickListener {
+        ListaAdapter(this, findAllPets(), object : OnListaAdapterClickListener {
             override fun onItemClick(pet: Pet) {
                 Log.i(this@PetsListActivity.localClassName, "Clicou no pet de ID ${pet._id}")
                 val intentNew = Intent(this@PetsListActivity, PetActivity::class.java)
