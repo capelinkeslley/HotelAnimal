@@ -20,7 +20,7 @@
             app:navigationIcon="@drawable/baseline_arrow_back_24"
             app:navigationIconTint="@color/white"
             app:titleTextColor="@color/white"
-            app:title="@string/novo">
+            app:title="@string/check_in">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolBarSave"

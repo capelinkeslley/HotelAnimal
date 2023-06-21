@@ -2,6 +2,7 @@ package utfpr.edu.br.motelanimal.dao
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.RelTutorPet
@@ -67,5 +68,9 @@ class PetsDatabaseHandler(var context: Context) : DataBaseHandler(context, "pet"
         }
 
         return super.update(registro, pet._id)
+    }
+
+    fun whereActive(): Cursor? {
+        return super.findList( null, "active = 1")
     }
 }

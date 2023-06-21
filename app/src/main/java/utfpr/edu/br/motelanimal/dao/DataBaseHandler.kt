@@ -55,9 +55,9 @@ abstract class DataBaseHandler protected constructor(
         return null
     }
 
-    fun findList(orderBy: String? = null): Cursor? {
+    fun findList(orderBy: String? = null, whereClause: String? = null): Cursor? {
         val registros =
-            this.writableDatabase.query(tablename, null, null, null, null, null, orderBy)
+            this.writableDatabase.query(tablename, null, whereClause, null, null, null, orderBy)
         if (ObjectUtils.isNotEmpty(registros) && registros.moveToNext()) {
             registros.moveToPrevious()
             return registros

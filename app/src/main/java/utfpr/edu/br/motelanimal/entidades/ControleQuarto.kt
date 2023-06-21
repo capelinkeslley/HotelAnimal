@@ -9,6 +9,7 @@ class ControleQuarto() {
     var quarto: Int = 0
     var pet: Int = 0
     var responsavel: Int = 0
+    var active: Int = 0
 
     constructor(
         database: DataBaseHandler, cursor: Cursor
@@ -17,11 +18,13 @@ class ControleQuarto() {
         this.quarto = database.getColumn(cursor, "quarto")!!.toInt()
         this.responsavel = database.getColumn(cursor, "responsavel")!!.toInt()
         this.pet = database.getColumn(cursor, "pet")!!.toInt()
+        this.active = database.getColumn(cursor, "active")!!.toInt()
     }
 
-    constructor(quarto: Int, pet: Int, responsavel: Int) : this() {
+    constructor(quarto: Int, pet: Int, responsavel: Int, active: Int) : this() {
         this.quarto = quarto
         this.responsavel = responsavel
         this.pet = pet
+        this.active = active
     }
 }

@@ -4,16 +4,28 @@ import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import utfpr.edu.br.motelanimal.dao.ControleQuartoDatabaseHandler
+import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityCheckOutBinding
+import utfpr.edu.br.motelanimal.entidades.ControleQuarto
+import utfpr.edu.br.motelanimal.entidades.Funcionario
+import utfpr.edu.br.motelanimal.entidades.Pet
+import utfpr.edu.br.motelanimal.entidades.getFuncionarioById
+import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 class CheckOutActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityCheckOutBinding.inflate(layoutInflater) }
-
+    private val petList = mutableListOf<Pet>()
+    private val petDatabaseHandler by lazy { PetsDatabaseHandler(this) }
+    private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
+    private var controleQuarto: ControleQuarto = ControleQuarto()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
@@ -53,6 +65,64 @@ class CheckOutActivity : AppCompatActivity() {
             binding.tableActivities.addView(tableRow)
 
             binding.btnCancel.setOnClickListener { onClickBtnCancel() }
+        }
+    }
+
+    private fun setPets() {
+        petList.clear()
+        val cursor = petDatabaseHandler.findList()
+        if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
+            while (cursor.moveToNext()) {
+                petList.add(Pet(petDatabaseHandler, cursor))
+            }
+        }
+        binding.pet.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            petList.map { it.nome })
+
+        if (controleQuarto.pet != 0) {
+            val pet = petList.filter { it._id == controleQuarto.pet }.firstOrNull()
+            val index = if (pet != null) petList.indexOf(pet) else 0
+            binding.pet.setSelection(index)
+        }
+
+        binding.pet.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                controleQuarto.pet = petList[position]._id
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+
+    private fun setFuncionarios() {
+        binding.responsavel.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            Funcionario.values().filter { it._id != 0 })
+
+        if (controleQuarto.responsavel != 0) {
+            binding.responsavel.setSelection(controleQuarto.responsavel - 1)
+        }
+        binding.responsavel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                controleQuarto.responsavel = getFuncionarioById(position + 1)._id
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
         }
     }
 

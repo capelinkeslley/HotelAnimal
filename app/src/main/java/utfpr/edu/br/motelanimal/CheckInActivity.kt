@@ -10,13 +10,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.dao.ControleQuartoDatabaseHandler
 import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
-import utfpr.edu.br.motelanimal.dao.QuartoDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityCheckInBinding
 import utfpr.edu.br.motelanimal.entidades.ControleQuarto
 import utfpr.edu.br.motelanimal.entidades.Funcionario
 import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.Quarto
 import utfpr.edu.br.motelanimal.entidades.getFuncionarioById
+import utfpr.edu.br.motelanimal.entidades.getQuartoByEspecie
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 class CheckInActivity : AppCompatActivity() {
@@ -24,12 +24,11 @@ class CheckInActivity : AppCompatActivity() {
     private val binding by lazy { ActivityCheckInBinding.inflate(layoutInflater) }
 
     private val petList = mutableListOf<Pet>()
-    private val quartoList = mutableListOf<Quarto>()
     private val petDatabaseHandler by lazy { PetsDatabaseHandler(this) }
-    private val quartoDatabaseHandler by lazy { QuartoDatabaseHandler(this) }
+    private val controleQuartoDatabaseHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private var controleQuarto: ControleQuarto = ControleQuarto()
-
+    private val quartosDisponiveis = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,29 +36,11 @@ class CheckInActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolBar.setNavigationOnClickListener { finish() }
 
-        val pets = arrayOf("pet 1", "pet 2", "pet 3", "pet 4")
-        val responsaveis =
-            arrayOf("responsável 1", "responsável 2", "responsável 3", "responsável 4")
-        val quarto = arrayOf("quarto 1", "quarto 2", "quarto 3", "quarto 4")
-
-        val adapterPets = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, pets)
-        val adapterResponsavel =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, responsaveis)
-        val adapterQuarto =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, quarto)
-
-        adapterPets.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
-        adapterResponsavel.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
-        adapterQuarto.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item)
-
         setPets()
         setFuncionarios()
-        setQuartos()
-
         binding.toolBarSave.setNavigationOnClickListener { onClickSave() }
 
         binding.btnCancel.setOnClickListener { onClickBtnCancel() }
-
     }
 
     private fun setPets() {
@@ -89,6 +70,8 @@ class CheckInActivity : AppCompatActivity() {
                 id: Long
             ) {
                 controleQuarto.pet = petList[position]._id
+
+                setQuartos(petList[position].especie)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -96,25 +79,24 @@ class CheckInActivity : AppCompatActivity() {
         }
     }
 
-    private fun setQuartos() {
-        quartoList.clear()
-        val cursor = quartoDatabaseHandler.findList()
+    private fun setQuartos(especie: Int) {
+        val cursor = controleQuartoHandler.whereActive()
+        val quartosIndisponiveis: MutableList<Int> = mutableListOf()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
             while (cursor.moveToNext()) {
-                quartoList.add(Quarto(quartoDatabaseHandler, cursor))
+                quartosIndisponiveis.add(ControleQuarto(controleQuartoDatabaseHandler, cursor).quarto)
             }
         }
+        val quartos: List<Quarto> = getQuartoByEspecie(especie, quartosIndisponiveis)
+
         binding.quarto.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            quartoList.map { it.numero })
+            quartos.map { it.name })
 
         if (controleQuarto.quarto != 0) {
-            val quarto = quartoList.filter { it._id == controleQuarto.quarto }.firstOrNull()
-            val index = if (quarto != null) quartoList.indexOf(quarto) else 0
-            binding.quarto.setSelection(index)
+            binding.quarto.setSelection(controleQuarto.quarto - 1)
         }
-
         binding.quarto.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -122,14 +104,13 @@ class CheckInActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                controleQuarto.quarto = quartoList[position]._id
+                controleQuarto.quarto = quartos.get(position)._id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
     }
-
     private fun setFuncionarios() {
         binding.responsavel.adapter = ArrayAdapter(
             this,
@@ -156,8 +137,10 @@ class CheckInActivity : AppCompatActivity() {
 
     private fun onClickSave() {
         Log.i(this.localClassName, "onClickSave")
+        controleQuarto.active = 1
         controleQuartoHandler.save(controleQuarto)
         Toast.makeText(this, "Check-in realizado com sucesso", Toast.LENGTH_SHORT).show()
+
         super.finish()
     }
 

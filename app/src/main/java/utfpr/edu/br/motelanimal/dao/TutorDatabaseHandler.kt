@@ -66,6 +66,6 @@ class TutorDatabaseHandler(context: Context?) : DataBaseHandler(context, "tutor"
     }
 
     fun findList(): Cursor? {
-        return super.findList("nomeCompleto ASC")
+        return super.findList("nomeCompleto ASC", null)
     }
 }
