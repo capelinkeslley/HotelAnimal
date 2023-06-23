@@ -1,5 +1,6 @@
 package utfpr.edu.br.motelanimal
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,6 @@ class CheckInActivity : AppCompatActivity() {
     private val controleQuartoDatabaseHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private var controleQuarto: ControleQuarto = ControleQuarto()
-    private val quartosDisponiveis = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class CheckInActivity : AppCompatActivity() {
         }
         binding.pet.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_list_item_1,
+            R.layout.simple_list_item_1,
             petList.map { it.nome })
 
         if (controleQuarto.pet != 0) {
@@ -80,7 +80,7 @@ class CheckInActivity : AppCompatActivity() {
     }
 
     private fun setQuartos(especie: Int) {
-        val cursor = controleQuartoHandler.whereActive()
+        val cursor = controleQuartoHandler.whereActive("active = 1")
         val quartosIndisponiveis: MutableList<Int> = mutableListOf()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
             while (cursor.moveToNext()) {
@@ -91,7 +91,7 @@ class CheckInActivity : AppCompatActivity() {
 
         binding.quarto.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_list_item_1,
+            R.layout.simple_list_item_1,
             quartos.map { it.name })
 
         if (controleQuarto.quarto != 0) {
@@ -114,7 +114,7 @@ class CheckInActivity : AppCompatActivity() {
     private fun setFuncionarios() {
         binding.responsavel.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_list_item_1,
+            R.layout.simple_list_item_1,
             Funcionario.values().filter { it._id != 0 })
 
         if (controleQuarto.responsavel != 0) {

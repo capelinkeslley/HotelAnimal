@@ -3,8 +3,8 @@ package utfpr.edu.br.motelanimal.entidades
 import utfpr.edu.br.motelanimal.dao.ControleQuartoDatabaseHandler
 import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
 
-enum class Quarto(val _id: Int, val numero: Int, val especie: Especie) {
-    _000(10, 303, Especie.DESCONHECIDO),
+enum class Quarto(var _id: Int, val numero: Int, val especie: Especie) {
+    _000(10, 0, Especie.DESCONHECIDO),
     _101(1, 101, Especie.CACHORRO),
     _102(2, 102, Especie.URSO),
     _103(3, 103, Especie.URSO),
@@ -16,8 +16,12 @@ enum class Quarto(val _id: Int, val numero: Int, val especie: Especie) {
     _303(9, 303, Especie.CACHORRO),
 }
 
-fun geQuartoById(id: Int): Quarto {
+fun getQuartoById(id: Int): Quarto {
     return Quarto.values().find { it._id == id } ?: Quarto._000
+}
+
+fun getQuartoByNumber(number: Int): Quarto {
+    return Quarto.values().find { it.numero == number } ?: Quarto._000
 }
 
 fun getQuartoByEspecie(especie: Int, except: MutableList<Int>): List<Quarto> {

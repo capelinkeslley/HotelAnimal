@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnCheckIn.setOnClickListener { onClickBtnCheckIn() }
         binding.btnCheckOut.setOnClickListener { onClickBtnCheckOut() }
         binding.btnConsultas.setOnClickListener { onClickBtnCheckConsultas() }
+        binding.btnQuartos.setOnClickListener { onClickBtnQuartos() }
     }
 
     private fun onClickBtnCheckIn() {
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
     private fun onClickBtnCheckConsultas() {
         Log.i(this.localClassName, "onClickBtnCheckConsultas")
         startActivity(Intent(this, ConsultasActivity::class.java))
+    }
+
+    private fun onClickBtnQuartos() {
+        Log.i(this.localClassName, "onClickBtnQuartos")
+        startActivity(Intent(this, QuartoListActivity::class.java))
     }
 
 }

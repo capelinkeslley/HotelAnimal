@@ -34,7 +34,8 @@ class ControleQuartoDatabaseHandler(context: Context) : DataBaseHandler(context,
         return super.save(registro)
     }
 
-    fun whereActive(): Cursor? {
-        return super.findList( null, "active = 1")
+    fun whereActive(query: String): Cursor? {
+        return super.findList( null, query)
     }
+
 }

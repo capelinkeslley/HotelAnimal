@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@color/system_background"
-    tools:context=".PetActivity">
+    tools:context=".QuartoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,8 +25,57 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        app:counterMaxLength="256"
+        android:id="@+id/numeroLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputOutlinedBox">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/numero"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/input_text_color"
+            android:inputType="textCapWords|textAutoComplete"
+            android:maxLength="256"
+            android:maxLines="1"
+            android:hint="@string/numero" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        app:counterMaxLength="256"
+        android:id="@+id/especieLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputOutlinedBox">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/especie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/input_text_color"
+            android:inputType="textCapWords|textAutoComplete"
+            android:maxLength="256"
+            android:maxLines="1"
+            android:hint="@string/especie" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        app:counterMaxLength="256"
+        android:id="@+id/petLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputOutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/input_text_color"
+            android:inputType="textCapWords|textAutoComplete"
+            android:maxLength="256"
+            android:maxLines="1"
+            android:hint="@string/pet" />
+    </com.google.android.material.textfield.TextInputLayout>
 </com.google.android.material.circularreveal.CircularRevealLinearLayout>

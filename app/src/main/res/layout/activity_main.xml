@@ -27,6 +27,12 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="@string/consultas" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnQuartos"
+        android:layout_marginTop="25dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/quartos" />
 
 
 </com.google.android.material.circularreveal.CircularRevealLinearLayout>

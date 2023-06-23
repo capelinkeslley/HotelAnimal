@@ -9,6 +9,7 @@ import utfpr.edu.br.motelanimal.adapter.OnListaAdapterClickListener
 import utfpr.edu.br.motelanimal.dao.PetsDatabaseHandler
 import utfpr.edu.br.motelanimal.databinding.ActivityPetsListBinding
 import utfpr.edu.br.motelanimal.entidades.Pet
+import utfpr.edu.br.motelanimal.entidades.Quarto
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 class PetsListActivity : AppCompatActivity(R.layout.activity_pets_list) {
@@ -22,6 +23,10 @@ class PetsListActivity : AppCompatActivity(R.layout.activity_pets_list) {
                 val intentNew = Intent(this@PetsListActivity, PetActivity::class.java)
                 intentNew.putExtra("id", pet._id)
                 startActivity(intentNew)
+            }
+
+            override fun onItemQuartoClick(quarto: Quarto) {
+                TODO("Not yet implemented")
             }
         })
     }

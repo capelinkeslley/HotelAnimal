@@ -7,6 +7,7 @@
     <string name="tutores">Tutores</string>
     <string name="cotutores">Co-Tutores</string>
     <string name="pets">Pets</string>
+    <string name="pet">Pet</string>
     <string name="relatorios">Relatórios</string>
     <string name="novo">Novo</string>
     <string name="editar">Editar</string>
@@ -31,4 +32,7 @@
     <string name="dieta">Dieta</string>
     <string name="comportamento">Comportamento</string>
     <string name="quarto">Quarto</string>
+    <string name="quartos">Quartos</string>
+    <string name="numero">Número</string>
+    <string name="status">Status</string>
 </resources>

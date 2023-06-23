@@ -29,7 +29,7 @@ class RelTutorPetDatabaseHandler(context: Context) : DataBaseHandler(context, "r
     }
 
     fun findByPet(petID: Int): List<RelTutorPet> {
-        val cursor = super.findList(null)
+        val cursor = super.findList(null, null)
         val list = mutableListOf<RelTutorPet>()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
             while (cursor.moveToNext()) {
