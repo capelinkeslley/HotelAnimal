@@ -35,4 +35,6 @@
     <string name="quartos">Quartos</string>
     <string name="numero">Número</string>
     <string name="status">Status</string>
+    <string name="relatorio">Relatório</string>
+    <string name="titulo">Título</string>
 </resources>

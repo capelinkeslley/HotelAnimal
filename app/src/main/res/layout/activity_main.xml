@@ -3,6 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:gravity="center"
         android:orientation="vertical"
         android:background="@color/system_background"
@@ -10,29 +11,31 @@
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckIn"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:text="@string/check_in" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCheckOut"
             android:layout_marginTop="25dp"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
             android:text="@string/check_out" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConsultas"
             android:layout_marginTop="25dp"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
+            app:icon="@drawable/baseline_search_24"
             android:text="@string/consultas" />
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnQuartos"
-        android:layout_marginTop="25dp"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="@string/quartos" />
+            android:id="@+id/btnQuartos"
+            android:layout_marginTop="25dp"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:text="@string/quartos" />
 
 
 </com.google.android.material.circularreveal.CircularRevealLinearLayout>
