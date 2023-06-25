@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import utfpr.edu.br.motelanimal.entidades.ControleQuarto
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 

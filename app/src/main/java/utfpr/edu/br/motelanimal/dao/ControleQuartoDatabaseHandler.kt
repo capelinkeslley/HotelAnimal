@@ -5,8 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import utfpr.edu.br.motelanimal.entidades.ControleQuarto
-import utfpr.edu.br.motelanimal.entidades.RelTutorPet
-import utfpr.edu.br.motelanimal.utils.ObjectUtils
+import utfpr.edu.br.motelanimal.entidades.Relatorio
 
 class ControleQuartoDatabaseHandler(context: Context) : DataBaseHandler(context, "controlequarto") {
 
@@ -36,6 +35,16 @@ class ControleQuartoDatabaseHandler(context: Context) : DataBaseHandler(context,
 
     fun whereActive(query: String): Cursor? {
         return super.findList( null, query)
+    }
+
+    fun update(controleQuarto: ControleQuarto): Int {
+        val registro = ContentValues()
+        registro.put("_id", controleQuarto._id)
+        registro.put("quarto", controleQuarto.quarto)
+        registro.put("pet", controleQuarto.pet)
+        registro.put("responsavel", controleQuarto.responsavel)
+        registro.put("active", 0)
+        return super.update(registro, controleQuarto._id)
     }
 
 }

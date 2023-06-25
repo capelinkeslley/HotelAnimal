@@ -36,7 +36,7 @@ class RelatoriosDatabaseHandler(context: Context?) : DataBaseHandler(context, "r
         return super.update(registro, relatorio._id)
     }
 
-    fun findList(): Cursor? {
-        return super.findList("titulo ASC", null)
+    fun findList(query: String? = null): Cursor? {
+        return super.findList("titulo ASC", query)
     }
 }

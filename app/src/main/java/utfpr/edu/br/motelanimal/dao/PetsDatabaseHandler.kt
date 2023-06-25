@@ -4,8 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import androidx.core.database.getBlobOrNull
-import androidx.core.database.getIntOrNull
 import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.RelTutorPet
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
@@ -84,7 +82,7 @@ class PetsDatabaseHandler(var context: Context) : DataBaseHandler(context, "pet"
         return pet
     }
     
-    fun whereActive(): Cursor? {
-        return super.findList( null, "active = 1")
+    fun whereActive(query: String? = null): Cursor? {
+        return super.findList( null, query)
     }
 }
