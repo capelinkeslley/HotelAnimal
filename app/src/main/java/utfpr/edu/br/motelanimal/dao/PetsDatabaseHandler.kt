@@ -83,4 +83,8 @@ class PetsDatabaseHandler(var context: Context) : DataBaseHandler(context, "pet"
         }
         return pet
     }
+    
+    fun whereActive(): Cursor? {
+        return super.findList( null, "active = 1")
+    }
 }

@@ -29,6 +29,10 @@ class CheckInActivity : AppCompatActivity() {
     private val controleQuartoDatabaseHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private var controleQuarto: ControleQuarto = ControleQuarto()
+<<<<<<< Updated upstream
+=======
+    private val quartosDisponiveis = mutableListOf<Int>()
+>>>>>>> Stashed changes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
