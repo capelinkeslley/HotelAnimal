@@ -21,7 +21,7 @@ class QuartoAdapter(private val listaObjetos: Array<Quarto>) : RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObjetoViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_quarto, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_quartos, parent, false)
         return ObjetoViewHolder(itemView)
     }
 

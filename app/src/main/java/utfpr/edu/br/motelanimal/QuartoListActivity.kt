@@ -21,7 +21,7 @@ class QuartoListActivity :  AppCompatActivity(R.layout.activity_quarto_list) {
 
             override fun onItemQuartoClick(quarto: Quarto) {
                 Log.i(this@QuartoListActivity.localClassName, "Clicou no pet de ID ${quarto._id}")
-                val intentNew = Intent(this@QuartoListActivity, QuartoActivity::class.java)
+                val intentNew = Intent(this@QuartoListActivity, QuartosActivity::class.java)
                 intentNew.putExtra("id", quarto._id)
                 startActivity(intentNew)
             }
