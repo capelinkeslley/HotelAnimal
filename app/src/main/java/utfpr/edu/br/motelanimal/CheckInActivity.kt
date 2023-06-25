@@ -99,7 +99,7 @@ class CheckInActivity : AppCompatActivity() {
             binding.quarto.setSelection(controleQuarto.quarto - 1)
         }
         binding.quarto.setSelection(-1)
-        
+
         binding.quarto.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
