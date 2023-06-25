@@ -36,11 +36,12 @@ class CheckInActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.toolBar.setNavigationOnClickListener { finish() }
 
-        setPets()
         setFuncionarios()
         binding.toolBarSave.setNavigationOnClickListener { onClickSave() }
 
         binding.btnCancel.setOnClickListener { onClickBtnCancel() }
+
+        setPets()
     }
 
     private fun setPets() {
@@ -97,6 +98,8 @@ class CheckInActivity : AppCompatActivity() {
         if (controleQuarto.quarto != 0) {
             binding.quarto.setSelection(controleQuarto.quarto - 1)
         }
+        binding.quarto.setSelection(-1)
+        
         binding.quarto.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
