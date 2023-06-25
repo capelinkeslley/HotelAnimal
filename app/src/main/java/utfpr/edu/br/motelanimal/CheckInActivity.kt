@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TableRow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import utfpr.edu.br.motelanimal.dao.ControleQuartoDatabaseHandler
@@ -16,6 +18,7 @@ import utfpr.edu.br.motelanimal.entidades.ControleQuarto
 import utfpr.edu.br.motelanimal.entidades.Funcionario
 import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.Quarto
+import utfpr.edu.br.motelanimal.entidades.Relatorio
 import utfpr.edu.br.motelanimal.entidades.getFuncionarioById
 import utfpr.edu.br.motelanimal.entidades.getQuartoByEspecie
 import utfpr.edu.br.motelanimal.entidades.getQuartoById
@@ -52,11 +55,22 @@ class CheckInActivity : AppCompatActivity() {
         if(quartoId != 0){
             petList.add(Pet())
         }
-
+        val petsNoHotel: MutableList<Int> = mutableListOf()
+        val controleQuartos = controleQuartoHandler.findList(null, "active = 1")
+        if (ObjectUtils.isNotEmpty(controleQuartos) && controleQuartos != null) {
+            while (controleQuartos.moveToNext()) {
+                if (controleQuartos != null) {
+                   petsNoHotel.add(ControleQuarto(controleQuartoHandler, controleQuartos).pet)
+                }
+            }
+        }
         val cursor = petDatabaseHandler.findList()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
             while (cursor.moveToNext()) {
-                petList.add(Pet(petDatabaseHandler, cursor))
+                if(!petsNoHotel.contains(Pet(petDatabaseHandler, cursor)._id)){
+                    petList.add(Pet(petDatabaseHandler, cursor))
+                }
+
             }
         }
         binding.pet.adapter = ArrayAdapter(

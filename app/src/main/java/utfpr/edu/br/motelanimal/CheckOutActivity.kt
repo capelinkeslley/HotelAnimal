@@ -61,12 +61,13 @@ class CheckOutActivity : AppCompatActivity() {
 
            setPets()
             setFuncionarios()
+
         }
     }
 
     private fun onClickSave() {
         if(petSelectedId != 0){
-            val controleQuartos = controleQuartoHandler.whereActive("active = 1 and _id = ${petSelectedId}")
+            val controleQuartos = controleQuartoHandler.findList(null, "active = 1 and pet = ${petSelectedId}")
             var controleQuarto: ControleQuarto = ControleQuarto()
             if (ObjectUtils.isNotEmpty(controleQuartos) && controleQuartos != null) {
 
@@ -133,6 +134,7 @@ class CheckOutActivity : AppCompatActivity() {
                 id: Long
             ) {
                 petSelectedId = petList[position]._id
+                setRelatorios()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -156,6 +158,38 @@ class CheckOutActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+    }
+
+    private fun setRelatorios(){
+        binding.tableActivities.removeAllViews()
+        val controleQuartos = controleQuartoHandler.whereActive("active = 1 and _id = ${petSelectedId}")
+        var controleQuarto: ControleQuarto = ControleQuarto()
+        if (ObjectUtils.isNotEmpty(controleQuartos) && controleQuartos != null) {
+            while (controleQuartos.moveToNext()) {
+                if (controleQuarto != null) {
+                    controleQuarto = ControleQuarto(controleQuartoHandler, controleQuartos)
+                }
+            }
+            val relatoriosCursor =
+                relatoriosDatabaseHandler.findList("quarto = ${controleQuarto.quarto}")
+
+            if (ObjectUtils.isNotEmpty(relatoriosCursor) && relatoriosCursor != null) {
+
+                while (relatoriosCursor.moveToNext()) {
+                    if (relatoriosCursor != null) {
+                        val relatorio = Relatorio(relatoriosDatabaseHandler, relatoriosCursor)
+                        val newRow = TableRow(this)
+                        val newCell = TextView(this)
+                        newCell.text =
+                            "Quarto: ${relatorio.quarto}, Titulo: ${relatorio.titulo}, informações: ${relatorio.relatorio}"
+
+                        newRow.addView(newCell)
+
+                        binding.tableActivities.addView(newRow)
+                    }
+                }
             }
         }
     }
