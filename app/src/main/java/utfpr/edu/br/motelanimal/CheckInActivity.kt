@@ -18,6 +18,7 @@ import utfpr.edu.br.motelanimal.entidades.Pet
 import utfpr.edu.br.motelanimal.entidades.Quarto
 import utfpr.edu.br.motelanimal.entidades.getFuncionarioById
 import utfpr.edu.br.motelanimal.entidades.getQuartoByEspecie
+import utfpr.edu.br.motelanimal.entidades.getQuartoById
 import utfpr.edu.br.motelanimal.utils.ObjectUtils
 
 class CheckInActivity : AppCompatActivity() {
@@ -29,10 +30,12 @@ class CheckInActivity : AppCompatActivity() {
     private val controleQuartoDatabaseHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private val controleQuartoHandler by lazy { ControleQuartoDatabaseHandler(this) }
     private var controleQuarto: ControleQuarto = ControleQuarto()
-
+    private var quartoId: Int = 0
+    private var alterouPet: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(this.localClassName, "onCreate")
+        quartoId = intent.getIntExtra("quartoId", 0)
         setContentView(binding.root)
         binding.toolBar.setNavigationOnClickListener { finish() }
 
@@ -46,6 +49,10 @@ class CheckInActivity : AppCompatActivity() {
 
     private fun setPets() {
         petList.clear()
+        if(quartoId != 0){
+            petList.add(Pet())
+        }
+
         val cursor = petDatabaseHandler.findList()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
             while (cursor.moveToNext()) {
@@ -72,6 +79,9 @@ class CheckInActivity : AppCompatActivity() {
             ) {
                 controleQuarto.pet = petList[position]._id
 
+                if(petList[position]._id != 0){
+                    alterouPet = true
+                }
                 setQuartos(petList[position].especie)
             }
 
@@ -81,6 +91,7 @@ class CheckInActivity : AppCompatActivity() {
     }
 
     private fun setQuartos(especie: Int) {
+        controleQuarto.quarto = 0
         val cursor = controleQuartoHandler.whereActive("active = 1")
         val quartosIndisponiveis: MutableList<Int> = mutableListOf()
         if (ObjectUtils.isNotEmpty(cursor) && cursor != null) {
@@ -88,7 +99,14 @@ class CheckInActivity : AppCompatActivity() {
                 quartosIndisponiveis.add(ControleQuarto(controleQuartoDatabaseHandler, cursor).quarto)
             }
         }
-        val quartos: List<Quarto> = getQuartoByEspecie(especie, quartosIndisponiveis)
+        val quartos: MutableList<Quarto> = mutableListOf()
+        if (quartoId != 0 && !alterouPet){
+            quartos.add(getQuartoById(quartoId))
+        }
+
+        getQuartoByEspecie(especie, quartosIndisponiveis).forEach { element ->
+            quartos.add(element)
+        }
 
         binding.quarto.adapter = ArrayAdapter(
             this,
@@ -98,6 +116,7 @@ class CheckInActivity : AppCompatActivity() {
         if (controleQuarto.quarto != 0) {
             binding.quarto.setSelection(controleQuarto.quarto - 1)
         }
+
         binding.quarto.setSelection(-1)
 
         binding.quarto.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -140,11 +159,20 @@ class CheckInActivity : AppCompatActivity() {
 
     private fun onClickSave() {
         Log.i(this.localClassName, "onClickSave")
-        controleQuarto.active = 1
-        controleQuartoHandler.save(controleQuarto)
-        Toast.makeText(this, "Check-in realizado com sucesso", Toast.LENGTH_SHORT).show()
+        if(controleQuarto.pet == 0){
+            Toast.makeText(this, "Pet não informado", Toast.LENGTH_SHORT).show()
+        }else if(controleQuarto.quarto == 0){
+            Toast.makeText(this, "Quarto não informado", Toast.LENGTH_SHORT).show()
+        }else if (controleQuarto.responsavel == 0){
+            Toast.makeText(this, "Responsável não informado", Toast.LENGTH_SHORT).show()
+        }else{
+            controleQuarto.active = 1
+            controleQuartoHandler.save(controleQuarto)
+            Toast.makeText(this, "Check-in realizado com sucesso", Toast.LENGTH_SHORT).show()
 
-        super.finish()
+            super.finish()
+        }
+
     }
 
     override fun onPause() {

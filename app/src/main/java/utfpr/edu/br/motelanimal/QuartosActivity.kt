@@ -54,7 +54,9 @@ class QuartosActivity :  AppCompatActivity(R.layout.activity_quartos) {
 
         if (quartosIndisponiveis.size == 0) {
             Log.i(this.localClassName, "Direcionar para o CheckIn")
-            startActivity(Intent(this, CheckInActivity::class.java))
+            val intentNew = Intent(this@QuartosActivity, CheckInActivity::class.java)
+            intentNew.putExtra("quartoId", quarto._id)
+            startActivity(intentNew)
         }
 
         val pet: Pet = petDatabaseHandler.getPetById(petId)
