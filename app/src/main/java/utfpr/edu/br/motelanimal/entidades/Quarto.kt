@@ -29,4 +29,8 @@ fun getQuartoByEspecie(especie: Int, except: MutableList<Int>): List<Quarto> {
         .filter { it.especie._id == especie }
 }
 
+fun getValidQuartos(): List<Quarto> {
+    return Quarto.values().filterNot { it._id == 10 }
+}
+
 

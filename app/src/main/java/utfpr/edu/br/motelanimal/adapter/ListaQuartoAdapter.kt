@@ -11,7 +11,7 @@ import utfpr.edu.br.motelanimal.entidades.getEspecieById
 
 class ListaQuartoAdapter(
     private val context: QuartoListActivity,
-    quartos: Array<Quarto>,
+    quartos: List<Quarto>,
     private val listener: OnListaAdapterClickListener
 ) : RecyclerView.Adapter<ListaQuartoAdapter.ViewHolder>() {
 

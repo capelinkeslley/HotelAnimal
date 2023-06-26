@@ -44,9 +44,6 @@ class CheckInActivity : AppCompatActivity() {
 
         setFuncionarios()
         binding.toolBarSave.setNavigationOnClickListener { onClickSave() }
-
-        binding.btnCancel.setOnClickListener { onClickBtnCancel() }
-
         setPets()
     }
 
