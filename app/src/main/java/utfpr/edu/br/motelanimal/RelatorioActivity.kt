@@ -29,6 +29,8 @@ class RelatorioActivity : AppCompatActivity() {
     private val petsDatabaseHandler by lazy { PetsDatabaseHandler(this) }
     private val controleQuartoDatabaseHandler by lazy { ControleQuartoDatabaseHandler(this) }
 
+    private val quartosSelect: MutableList<Quarto> = mutableListOf()
+
     private var pets: MutableList<Pet> = mutableListOf()
     private var quartos: MutableList<ControleQuarto> = mutableListOf()
     private var relatorio: Relatorio = Relatorio()
@@ -94,6 +96,7 @@ class RelatorioActivity : AppCompatActivity() {
         for (controle in quartos.filter { it.quarto != 10 }) {
             val quarto: Quarto = getQuartoById(controle.quarto)
             val pet: Pet = pets.find { it._id == controle.pet }!!
+            quartosSelect.add(quarto)
             spinnerText.add(quarto.numero.toString() + " - " + pet.nome + " - " + getEspecieById(pet.especie).nome)
         }
 
@@ -112,7 +115,7 @@ class RelatorioActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                relatorio.quarto = getQuartoById(position + 1)._id
+                relatorio.quarto = quartosSelect.get(position)._id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

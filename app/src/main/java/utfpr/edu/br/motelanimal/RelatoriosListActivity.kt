@@ -91,16 +91,20 @@ class RelatoriosListActivity : AppCompatActivity() {
         val registros: MutableList<RelatoriosListItem> = mutableListOf()
         for (relatorio in relatorios) {
             val quarto = getQuartoById(relatorio.quarto)
-            val controle = controleQuarto.find { it.quarto == quarto._id }!!
-            val pet = pets.find { it._id == controle.pet }!!
+            val controle = controleQuarto.find { it.quarto == quarto._id }
+            if (ObjectUtils.isNotEmpty(controle) && controle != null) {
+                val pet = pets.find { it._id == controle.pet }
 
-            val item = RelatoriosListItem()
-            item.titulo = relatorio.titulo
+                if (ObjectUtils.isNotEmpty(pet) && pet != null) {
+                    val item = RelatoriosListItem()
+                    item.titulo = relatorio.titulo
 
-            item.quarto =
-                quarto.numero.toString() + " - " + pet.nome + " - " + getEspecieById(pet.especie).nome
+                    item.quarto =
+                        quarto.numero.toString() + " - " + pet.nome + " - " + getEspecieById(pet.especie).nome
 
-            registros.add(item)
+                    registros.add(item)
+                }
+            }
         }
 
         binding.listaRelatorios.adapter = SimpleCursorAdapter(
